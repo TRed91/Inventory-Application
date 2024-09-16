@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+</head>
+<body>
+    <h1>Categories</h1>
+    <hr>
+    <%- include('partials/nav.ejs') %>
+    <hr>
+    <form action="/categories" method="post">
+        <input type="text" name="addCategory" id="addCategory" required>
+        <button type="submit">Add Category</button>
+    </form>
+    <hr>
+    <ul>
+        <% categories.map(category => { %>
+            <li><%= category.categoryname %></li>
+            <form action="/categories/delete" method="post">
+                <input type="text" hidden id="deleteCategory" name="deleteCategory" value="<%= category.categoryname %>">
+                <button type="submit">Delete</button>
+            </form>
+            <form action="/categories/items" method="get">
+                <input type="text" hidden id="categoryItems" name="categoryItems" value="<%= category.categoryname %>">
+                <button type="submit">Items</button>
+            </form>
+        <% }); %>
+    </ul>
+</body>
+</html>

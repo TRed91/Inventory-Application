@@ -1,17 +1,41 @@
 const { Client } = require('pg');
 
+const SQL_Drop = `
+DROP TABLE IF EXISTS Item;
+DROP TABLE IF EXISTS Seller;
+DROP TABLE IF EXISTS Category;
+`;
+
 const SQL_CategorySeed = `
 CREATE TABLE IF NOT EXISTS category (
     categoryId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     categoryName VARCHAR(50) NOT NULL
-)
+);
+
+INSERT INTO category (categoryName)
+VALUES ('electronics');
+INSERT INTO category (categoryName)
+VALUES ('games');
+INSERT INTO category (categoryName)
+VALUES ('consoles');
+INSERT INTO category (categoryName)
+VALUES ('computer');
 `;
 
 const SQL_SellerSeed = `
 CREATE TABLE IF NOT EXISTS seller (
     sellerId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     sellerName VARCHAR(50) NOT NULL
-)
+);
+
+INSERT INTO seller (sellerName)
+VALUES ('house-product');
+INSERT INTO seller (sellerName)
+VALUES ('sany');
+INSERT INTO seller (sellerName)
+VALUES ('sen-electro');
+INSERT INTO seller (sellerName)
+VALUES ('macrohard');
 `;
 
 const SQL_ItemSeed = `
@@ -37,6 +61,7 @@ async function main() {
     });
     console.log('Start seeding...')
     await client.connect();
+    await client.query(SQL_Drop);
     await client.query(SQL_CategorySeed);
     await client.query(SQL_SellerSeed);
     await client.query(SQL_ItemSeed);

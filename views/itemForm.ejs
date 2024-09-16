@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <hr>
+    <%- include('partials/nav.ejs') %>
+    <hr>
+    <form action="/add" method="post">
+        <div>
+            <label for="name">Item Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+        <label for="category">Category: </label>
+            <select name="category" id="category" required>
+                <% categories.map(category => { %>
+                    <option value="<%= category.categoryid %>"><%= category.categoryname %></option>
+                <% }); %>
+            </select>
+        </div>
+        <div>
+            <label for="seller">Seller: </label>
+            <select name="seller" id="seller" required>
+                <% sellers.map(seller => { %>
+                    <option value="<%= seller.sellerid %>"><%= seller.sellername %></option>
+                <% }); %>
+            </select>
+        </div>
+        <div>
+            <label for="price">Price: </label>
+            <input type="number" id="price" name="price" required>
+        </div>
+        <div>
+            <label for="quantity">Quantity: </label>
+            <input type="number" id="quantity" name="quantity" required>
+        </div>
+        <button type="submit">Add Item</button>
+    </form>
+</body>
+</html>
