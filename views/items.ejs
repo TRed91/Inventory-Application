@@ -4,18 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=^, initial-scale=1.0">
     <title>Items</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <h1>Inventory Items</h1>
     <hr>
     <%- include('partials/nav.ejs') %>
     <hr>
-    <a href="/add">Add Item</a>
+    <button class="addBtn"><a href="/add">Add Item</a></button>
+    <div class="header">
+        <div>Name</div>
+        <div>Price</div>
+        <div>Stock</div>
+        <div>Category</div>
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+    </div>
     <ul>
         <% items.map(item => { %>
-            <li>
+            <li class="listrow">
                 <div>
-                    Name: <%= item.itemname %>, Price: <%= item.price %>, Stock: <%= item.quantity %>
+                    <%= item.itemname %> 
+                </div>
+                <div>
+                    $<%= item.price %>
+                </div>
+                <div>
+                    <%= item.quantity %>
+                </div>
+                <div>
+                    <%= item.categoryname %>
                 </div>
                 <div>
                     <form action="/<%= item.itemid %>/update" method="get">
@@ -24,10 +42,12 @@
                         <input type="text" hidden value="<%= item.itemname %>" name="name">
                         <input type="text" hidden value="<%= item.price %>" name="price">
                         <input type="text" hidden value="<%= item.quantity %>" name="quantity">
-                        <button type="submit">Update</button>
+                        <button type="submit" class="update">Update</button>
                     </form>
+                </div>
+                <div>
                     <form action="/<%= item.itemid %>/delete" method="post">
-                        <button type="submit">Delete</button>
+                        <button type="submit" class="delete">Delete</button>
                     </form>
                 </div>
             </li>

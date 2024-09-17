@@ -16,7 +16,7 @@ async function deleteCategory(name) {
 }
 
 async function getAllItems() {
-    const { rows } = await pool.query('SELECT * FROM item');
+    const { rows } = await pool.query('SELECT * FROM item INNER JOIN category ON item.categoryId = category.categoryId');
     return rows;
 }
 

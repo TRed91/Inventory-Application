@@ -1,6 +1,6 @@
-<form action="<%= action %>" method="post">
+<form action="<%= action %>" method="post" class="itemForm">
     <div>
-        <label for="name">Item Name</label>
+        <label for="name">Item Name: </label>
         <input type="text" id="name" name="name" value="<%= item.name %>" required>
     </div>
     <div>
@@ -16,24 +16,12 @@
         </select>
     </div>
     <div>
-        <label for="seller">Seller: </label>
-        <select name="seller" id="seller" required>
-            <% sellers.map(seller => { %>
-                <% if (seller.sellerid == item.seller) { %>
-                    <option value="<%= seller.sellerid %>" selected><%= seller.sellername %></option>
-                <% } else { %>
-                    <option value="<%= seller.sellerid %>"><%= seller.sellername %></option>
-                <% } %>
-            <% }); %>
-        </select>
-    </div>
-    <div>
         <label for="price">Price: </label>
-        <input type="number" id="price" name="price" value="<%= item.price %>" required>
+        <input type="number" id="price" name="price" value="<%= item.price %>" min="1" required>
     </div>
     <div>
         <label for="quantity">Quantity: </label>
-        <input type="number" id="quantity" name="quantity" value="<%= item.quantity %>" required>
+        <input type="number" id="quantity" name="quantity" value="<%= item.quantity %>" min="1" required>
     </div>
     <% if (action === "/add") { %>
         <button type="submit">Add Item</button>
