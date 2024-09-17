@@ -9,8 +9,13 @@ indexRouter.get('/categories', categoriesController.categoriesGet);
 indexRouter.post('/categories', categoriesController.addCategoriesPost);
 indexRouter.post('/categories/delete', categoriesController.deleteCategoriesPost);
 
+indexRouter.get('/:categoryId/items', itemsController.getItemsByCategory);
+
 indexRouter.get('/items', itemsController.itemsGet);
 indexRouter.get('/add', itemsController.itemsFormGet);
 indexRouter.post('/add', itemsController.addItemPost);
+indexRouter.get('/:id/update', itemsController.updateItemGet);
+indexRouter.post('/:id/update', itemsController.updateItemPost);
+indexRouter.post('/:id/delete', itemsController.deleteItemPost);
 
 module.exports = indexRouter;

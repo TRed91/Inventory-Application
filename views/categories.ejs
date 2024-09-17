@@ -22,8 +22,8 @@
                 <input type="text" hidden id="deleteCategory" name="deleteCategory" value="<%= category.categoryname %>">
                 <button type="submit">Delete</button>
             </form>
-            <form action="/categories/items" method="get">
-                <input type="text" hidden id="categoryItems" name="categoryItems" value="<%= category.categoryname %>">
+            <form action="/<%= category.categoryid %>/items" method="get">
+                <input type="text" hidden id="categoryItems" name="categoryItems" value="<%= category.categoryid %>">
                 <button type="submit">Items</button>
             </form>
         <% }); %>

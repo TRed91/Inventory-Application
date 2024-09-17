@@ -13,7 +13,24 @@
     <a href="/add">Add Item</a>
     <ul>
         <% items.map(item => { %>
-            <li>Name: <%= item.itemname %>, Price: <%= item.price %>, Stock: <%= item.quantity %></li>
+            <li>
+                <div>
+                    Name: <%= item.itemname %>, Price: <%= item.price %>, Stock: <%= item.quantity %>
+                </div>
+                <div>
+                    <form action="/<%= item.itemid %>/update" method="get">
+                        <input type="text" hidden value="<%= item.categoryid %>" name="category">
+                        <input type="text" hidden value="<%= item.sellerid %>" name="seller" >
+                        <input type="text" hidden value="<%= item.itemname %>" name="name">
+                        <input type="text" hidden value="<%= item.price %>" name="price">
+                        <input type="text" hidden value="<%= item.quantity %>" name="quantity">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form action="/<%= item.itemid %>/delete" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </li>
         <% }); %>
     </ul>
 </body>
