@@ -57,7 +57,6 @@ async function getSellers() {
 
 async function addItem(item) {
     const { category, seller, name, price, quantity } = item;
-    console.log(item)
     await pool.query(`
         INSERT INTO item (categoryId, sellerId, itemName, price, quantity)
         VALUES ($1, $2, $3, $4, $5)`, [category, seller, name, price, quantity]);
