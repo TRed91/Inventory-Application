@@ -16,6 +16,7 @@
         <div>Name</div>
         <div>Price</div>
         <div>Stock</div>
+        <div>Company</div>
         <div>Category</div>
         <div class="placeholder"></div>
         <div class="placeholder"></div>
@@ -24,13 +25,16 @@
         <% items.map(item => { %>
             <li class="listrow">
                 <div>
-                    <%= item.itemname %> 
+                    <%= item.itemname %>
                 </div>
                 <div>
                     $<%= item.price %>
                 </div>
                 <div>
                     <%= item.quantity %>
+                </div>
+                <div>
+                    <%= item.sellername %>
                 </div>
                 <div>
                     <%= item.categoryname %>

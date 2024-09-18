@@ -16,20 +16,32 @@
         <button type="submit">Add Category</button>
     </form>
     <hr>
-    <ul class="categories">
-        <% categories.map(category => { %>
-            <div>
-                <li><%= category.categoryname %></li>
-                <form action="/<%= category.categoryid %>/items" method="get">
-                    <input type="text" hidden id="categoryItems" name="categoryItems" value="<%= category.categoryid %>">
-                    <button type="submit" class="update">Items</button>
-                </form>
-                <form action="/categories/delete" method="post">
-                    <input type="text" hidden id="deleteCategory" name="deleteCategory" value="<%= category.categoryname %>">
-                    <button type="submit" class="delete">Delete</button>
-                </form>
-            </div>
-        <% }); %>
-    </ul>
+    <div class="categories-container">
+        <ul class="categories">
+            <% categories.map(category => { %>
+                
+                <li>
+                    <div>
+                        <%= category.categoryname %>
+                    </div>
+                    <form action="/<%= category.categoryid %>/items" method="get">
+                        <input type="text" hidden id="categoryItems" name="categoryItems" value="<%= category.categoryid %>">
+                        <button type="submit" class="update">Items</button>
+                    </form>
+                    <form action="/<%= category.categoryid %>/edit" method="post" class="editForm">
+                        <input type="text" id="editCategory" name="editCategory" value="<%= category.categoryname %>">
+                        <button type="submit" class="edit">Edit</button>
+                    </form>
+                    <form action="/categories/delete" method="post">
+                        <input type="text" hidden id="deleteCategory" name="deleteCategory" value="<%= category.categoryname %>">
+                        <button type="submit" class="delete">Delete</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+        <div>
+            <p><%= message %></p>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,16 +1,23 @@
 const { Router } = require('express');
-const indexController = require('../controllers/indexController');
 const categoriesController = require('../controllers/categoriesController');
 const itemsController = require('../controllers/itemsController');
+const sellersController = require('../controllers/sellersController');
 const indexRouter = Router();
 
-indexRouter.get('/', indexController.indexGet);
 indexRouter.get('/categories', categoriesController.categoriesGet);
 indexRouter.post('/categories', categoriesController.addCategoriesPost);
 indexRouter.post('/categories/delete', categoriesController.deleteCategoriesPost);
+indexRouter.post('/:categoryId/edit', categoriesController.editCategoryPost);
+
+indexRouter.get('/sellers', sellersController.sellersGet);
+indexRouter.post('/sellers', sellersController.addSellersPost);
+indexRouter.post('/sellers/delete', sellersController.deleteSellersPost);
+indexRouter.post('/sellers/:sellerId/edit', sellersController.editSellersPost);
 
 indexRouter.get('/:categoryId/items', itemsController.getItemsByCategory);
+indexRouter.get('/sellers/:sellerId/items', itemsController.getItemsBySeller);
 
+indexRouter.get('/', itemsController.itemsGet);
 indexRouter.get('/items', itemsController.itemsGet);
 indexRouter.get('/add', itemsController.itemsFormGet);
 indexRouter.post('/add', itemsController.addItemPost);

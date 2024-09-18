@@ -11,6 +11,10 @@ app.set('view engine', 'ejs');
 
 app.use('/', indexRouter)
 
+app.get('/*', (req, res) => {
+    res.render('404');
+})
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Express App listening to port ${PORT}`);

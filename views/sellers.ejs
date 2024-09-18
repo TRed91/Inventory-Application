@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companies</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Companies</h1>
+    <hr>
+    <%- include('partials/nav.ejs') %>
+    <hr>
+    <form action="/sellers" method="post">
+        <input type="text" name="addSeller" id="addSeller" required>
+        <button type="submit">Add Company</button>
+    </form>
+    <hr>
+    <div class="categories-container">
+        <ul class="categories">
+            <% sellers.map(seller => { %>
+                
+                <li>
+                    <div>
+                        <%= seller.sellername %>
+                    </div>
+                    <form action="/sellers/<%= seller.sellerid %>/items" method="get">
+                        <input type="text" hidden id="sellerItems" name="sellerItems" value="<%= seller.sellerid %>">
+                        <button type="submit" class="update">Items</button>
+                    </form>
+                    <form action="/sellers/<%= seller.sellerid %>/edit" method="post" class="editForm">
+                        <input type="text" id="editSeller" name="editSeller" value="<%= seller.sellername %>">
+                        <button type="submit" class="edit">Edit</button>
+                    </form>
+                    <form action="/sellers/delete" method="post">
+                        <input type="text" hidden id="deleteSeller" name="deleteSeller" value="<%= seller.sellername %>">
+                        <button type="submit" class="delete">Delete</button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+        <div>
+            <p><%= message %></p>
+        </div>
+    </div>
+</body>
+</html>

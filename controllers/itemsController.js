@@ -11,6 +11,12 @@ async function getItemsByCategory(req, res) {
     res.render('items', {items: items})
 }
 
+async function getItemsBySeller(req, res) {
+    const id = req.params.sellerId;
+    const items = await db.getItemsBySeller(id);
+    res.render('items', {items: items})
+}
+
 async function itemsFormGet(req, res) {
     const categories = await db.getAllCategories();
     const sellers = await db.getSellers();
@@ -58,6 +64,7 @@ async function deleteItemPost(req, res) {
 module.exports = {
     itemsGet,
     getItemsByCategory,
+    getItemsBySeller,
     itemsFormGet,
     addItemPost,
     updateItemGet,

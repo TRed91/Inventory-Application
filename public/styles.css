@@ -32,7 +32,7 @@ ul {
     justify-content: space-around;
     background-color: #2348dc;
     color: white;
-    padding: 10px 0px;
+    padding: 10px 5px;
 }
 
 .header > div {
@@ -130,16 +130,30 @@ select {
     flex-direction: column;
 }
 
-.categories > div {
+.categories > li {
     display: flex;
     justify-content: space-between;
-    width: 20rem;
+    width: 50rem;
     border-bottom: 1px solid;
     border-left: 1px solid;
     border-right: 1px solid;
     padding: 10px;
 }
 
-.categories > div > li {
-    width: 3rem;
+.categories > li > * {
+    width: 5rem;
+}
+
+.categories-container {
+    display: flex;
+}
+
+.categories-container > div {
+    padding: 50px;
+    font-size: 20px;
+    color: #ba0a0a;
+}
+
+.editForm {
+    display: flex;
 }
