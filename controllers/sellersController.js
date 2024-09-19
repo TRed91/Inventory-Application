@@ -7,10 +7,17 @@ async function sellersGet(req, res) {
 }
 
 async function addSellersPost(req, res) {
-    const name = req.body.addSeller;
-    await db.addSellerPost(name);
-    console.log('Inserted into category: ', name);
-    res.redirect('/sellers');
+    try {
+        const name = req.body.addSeller;
+        await db.addSellerPost(name);
+        console.log('Inserted into category: ', name);
+        res.redirect('/sellers');
+    } catch (err) {
+        console.log(err.message);
+        const errMsg = 'Company with the same name already exists.'
+        res.redirect('/sellers/?err=' + errMsg);
+    }
+    
 }
 
 async function deleteSellersPost(req, res) {
@@ -20,6 +27,7 @@ async function deleteSellersPost(req, res) {
         console.log('Deleted: ', name);
         res.redirect('/sellers');
     } catch (err) {
+        console.log(err.message);
         const errMsg = 'Cannot delete seller company that has items assigned to it.'
         res.redirect('/sellers/?err=' + errMsg);
     }
@@ -27,11 +35,18 @@ async function deleteSellersPost(req, res) {
 }
 
 async function editSellersPost(req, res) {
-    const name = req.body.editSeller;
-    const id = req.params.sellerId;
-    await db.editSeller(id, name);
-    console.log(`Changed seller name of id ${id} to ${name}`);
-    res.redirect('/sellers');
+    try {
+        const name = req.body.editSeller;
+        const id = req.params.sellerId;
+        await db.editSeller(id, name);
+        console.log(`Changed seller name of id ${id} to ${name}`);
+        res.redirect('/sellers');
+    } catch (err) {
+        console.log(err.message);
+        const errMsg = 'Company with the same name already exists.'
+        res.redirect('/sellers/?err=' + errMsg);
+    }
+    
 }
 
 module.exports = {

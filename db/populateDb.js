@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS Category;
 const SQL_CategorySeed = `
 CREATE TABLE IF NOT EXISTS category (
     categoryId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    categoryName VARCHAR(50) NOT NULL
+    categoryName VARCHAR(50) NOT NULL UNIQUE
 );
 
 INSERT INTO category (categoryName)
@@ -25,7 +25,7 @@ VALUES ('computer');
 const SQL_SellerSeed = `
 CREATE TABLE IF NOT EXISTS seller (
     sellerId INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    sellerName VARCHAR(50) NOT NULL
+    sellerName VARCHAR(50) NOT NULL UNIQUE
 );
 
 INSERT INTO seller (sellerName)
