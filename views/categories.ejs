@@ -24,8 +24,8 @@
                     <div>
                         <%= category.categoryname %>
                     </div>
-                    <form action="/<%= category.categoryid %>/items" method="get">
-                        <input type="text" hidden id="categoryItems" name="categoryItems" value="<%= category.categoryid %>">
+                    <form action="/items/category/<%= category.categoryname %>" method="get">
+                        <input type="text" hidden id="categoryId" name="categoryId" value="<%= category.categoryid %>">
                         <button type="submit" class="update">Items</button>
                     </form>
                     <form action="/<%= category.categoryid %>/edit" method="post" class="editForm">

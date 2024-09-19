@@ -14,8 +14,8 @@ indexRouter.post('/sellers', sellersController.addSellersPost);
 indexRouter.post('/sellers/delete', sellersController.deleteSellersPost);
 indexRouter.post('/sellers/:sellerId/edit', sellersController.editSellersPost);
 
-indexRouter.get('/:categoryId/items', itemsController.getItemsByCategory);
-indexRouter.get('/sellers/:sellerId/items', itemsController.getItemsBySeller);
+indexRouter.get('/items/category/:categoryName', itemsController.getItemsByCategory);
+indexRouter.get('/items/seller/:sellerName', itemsController.getItemsBySeller);
 
 indexRouter.get('/', itemsController.itemsGet);
 indexRouter.get('/items', itemsController.itemsGet);

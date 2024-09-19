@@ -1,20 +1,28 @@
 const db = require('../db/queries');
 
 async function itemsGet(req, res) {
-    const items = await db.getAllItems();
-    res.render('items', { items: items });
+    const orderBy = req.query.orderby || 'itemName';
+    let items = []
+    if (req.query.search) {
+        items = await db.getSearchItems(req.query.search, orderBy);
+    } else {
+        items = await db.getAllItems(orderBy);
+    }
+    res.render('items', { items: items, filter: null });
 }
 
 async function getItemsByCategory(req, res) {
-    const id = req.params.categoryId;
-    const items = await db.getItemsByCategory(id);
-    res.render('items', {items: items})
+    const name = req.params.categoryName;
+    const order = req.query.orderby || 'itemName';
+    const items = await db.getItemsByCategory(name, order);
+    res.render('items', {items: items, filter: {type: 'category', name: name}});
 }
 
 async function getItemsBySeller(req, res) {
-    const id = req.params.sellerId;
-    const items = await db.getItemsBySeller(id);
-    res.render('items', {items: items})
+    const name = req.params.sellerName;
+    const order = req.query.orderby || 'itemName';
+    const items = await db.getItemsBySeller(name, order);
+    res.render('items', {items: items, filter: {type: 'seller', name: name}});
 }
 
 async function itemsFormGet(req, res) {

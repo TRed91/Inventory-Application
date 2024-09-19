@@ -1,0 +1,11 @@
+<% if (filter !== null) { %>
+    <form action="/items/<%= filter.type %>/<%= filter.name %>" method="get">
+        <input type="text" id="orderby" name="orderby" hidden value="<%= value %>">
+        <button type="submit">⌄</button>
+    </form>
+<% } else { %>
+    <form action="/items" method="get">
+        <input type="text" id="orderby" name="orderby" hidden value="<%= value %>">
+        <button type="submit">⌄</button>
+    </form>
+<% } %>

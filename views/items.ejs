@@ -11,13 +11,19 @@
     <hr>
     <%- include('partials/nav.ejs') %>
     <hr>
-    <button class="addBtn"><a href="/add">Add Item</a></button>
+    <div class="itemsFilter">
+        <button class="addBtn"><a href="/add">Add Item</a></button>
+        <form action="/items" method="get">
+            <input type="text" id="search" name="search" placeholder="search...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
     <div class="header">
-        <div>Name</div>
-        <div>Price</div>
-        <div>Stock</div>
-        <div>Company</div>
-        <div>Category</div>
+        <div>Name <%- include('partials/orderBtn.ejs', {value: 'itemName', filter: filter}) %></div>
+        <div>Price <%- include('partials/orderBtn.ejs', {value: 'price', filter: filter}) %></div>
+        <div>Stock <%- include('partials/orderBtn.ejs', {value: 'quantity', filter: filter}) %></div>
+        <div>Company <%- include('partials/orderBtn.ejs', {value: 'sellerName', filter: filter}) %></div>
+        <div>Category <%- include('partials/orderBtn.ejs', {value: 'categoryName', filter: filter}) %></div>
         <div class="placeholder"></div>
         <div class="placeholder"></div>
     </div>

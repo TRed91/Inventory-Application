@@ -19,34 +19,45 @@ async function editCategory(id, name) {
 }
 
 // Item queries ==============================================================================
-async function getAllItems() {
+async function getAllItems(orderBy) {
     const { rows } = await pool.query(`
         SELECT * FROM item i
         INNER JOIN category c ON i.categoryId = c.categoryId
         INNER JOIN seller s ON s.sellerId = i.sellerId
-        ORDER BY itemName`);
+        ORDER BY ${orderBy};`);
     return rows;
 }
 
-async function getItemsByCategory(id) {
+async function getSearchItems(search, orderBy) {
     const { rows } = await pool.query(`
         SELECT * FROM item i
         INNER JOIN category c ON i.categoryId = c.categoryId
         INNER JOIN seller s ON s.sellerId = i.sellerId
-        WHERE i.categoryId = $1
-        ORDER BY itemName;
-        `, [id]);
+        WHERE itemName LIKE '%${search}%'
+        ORDER BY $1;
+        `, [orderBy]);
     return rows;
 }
 
-async function getItemsBySeller(id) {
+async function getItemsByCategory(name, orderBy) {
     const { rows } = await pool.query(`
         SELECT * FROM item i
         INNER JOIN category c ON i.categoryId = c.categoryId
         INNER JOIN seller s ON s.sellerId = i.sellerId
-        WHERE i.sellerId = $1
-        ORDER BY itemName;
-        `, [id]);
+        WHERE categoryName = $1
+        ORDER BY ${orderBy};
+        `, [name]);
+    return rows;
+}
+
+async function getItemsBySeller(name, orderby) {
+    const { rows } = await pool.query(`
+        SELECT * FROM item i
+        INNER JOIN category c ON i.categoryId = c.categoryId
+        INNER JOIN seller s ON s.sellerId = i.sellerId
+        WHERE sellerName = $1
+        ORDER BY ${orderby};
+        `, [name]);
     return rows;
 }
 
@@ -103,6 +114,7 @@ module.exports = {
     editCategory,
     deleteCategory,
     getAllItems,
+    getSearchItems,
     getItemsByCategory,
     getItemsBySeller,
     getSellers,

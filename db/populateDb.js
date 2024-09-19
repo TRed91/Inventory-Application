@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Item (
     categoryId INTEGER,
     sellerId INTEGER,
     itemName VARCHAR(255) NOT NULL,
-    price DECIMAL NOT NULL,
+    price DECIMAL(6,2) NOT NULL,
     quantity INTEGER NOT NULL,
     CONSTRAINT fk_category
         FOREIGN KEY (categoryId)

@@ -24,7 +24,7 @@
                     <div>
                         <%= seller.sellername %>
                     </div>
-                    <form action="/sellers/<%= seller.sellerid %>/items" method="get">
+                    <form action="/items/seller/<%= seller.sellername %>" method="get">
                         <input type="text" hidden id="sellerItems" name="sellerItems" value="<%= seller.sellerid %>">
                         <button type="submit" class="update">Items</button>
                     </form>

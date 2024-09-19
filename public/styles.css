@@ -38,6 +38,8 @@ ul {
 .header > div {
     width: 15%;
     text-align: left;
+    display: flex;
+    gap: 5px;
 }
 
 .listrow {
@@ -62,6 +64,11 @@ ul {
     font-weight: bold;
     border: 2px solid;
     border-radius: 5px;
+    color: #2348dc;
+}
+
+.addBtn > a {
+    color: #2348dc;
 }
 
 .addBtn:hover {
@@ -156,4 +163,10 @@ select {
 
 .editForm {
     display: flex;
+}
+
+.itemsFilter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
